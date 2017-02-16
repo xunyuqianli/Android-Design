@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.a27459.androiddesigntest.R;
-
 /**
  * Author       : yanbo
  * Date         : 2015-06-01
@@ -23,15 +21,17 @@ public class InfoDetailsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRecyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_infodetails, container, false);
-        return mRecyclerView;
+        View view = inflater.inflate(R.layout.fragment_infodetails,container,false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        mRecyclerView.setAdapter(new RecyclerViewAdapter(getActivity()));
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
-        mRecyclerView.setAdapter(new RecyclerViewAdapter(getActivity()));
+
     }
 }
